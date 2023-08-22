@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        viewPager = findViewById(R.id.view_pager)
+        tabLayout = findViewById(R.id.tab_layout)
+
         initViewPager()
         initTabLayout()
     }
@@ -35,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewPager() {
-        viewPager = findViewById(R.id.view_pager)
         viewPagerPageChangeListener = ViewPagerPageChangeListener(tabLayout)
         viewPager.registerOnPageChangeCallback(viewPagerPageChangeListener)
         adapter = MyPagerAdapter(this)
@@ -43,7 +45,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initTabLayout() {
-        tabLayout = findViewById(R.id.tab_layout)
         tabLayout.addTab(tabLayout.newTab().setText("Friends"))
         tabLayout.addTab(tabLayout.newTab().setText("Photo"))
         tabLayout.addTab(tabLayout.newTab().setText("Gallery"))
