@@ -7,46 +7,6 @@
     android:background="@color/grey"
     tools:context=".fragments.EnterPhoneNumberFragment">
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/user_code"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginEnd="175dp"-->
-    <!--        android:layout_marginBottom="683dp"-->
-    <!--        android:autofillHints="phone"-->
-    <!--        android:ems="10"-->
-    <!--        android:gravity="center"-->
-    <!--        android:hint="@string/code_hint"-->
-    <!--        android:inputType="number"-->
-    <!--        android:letterSpacing="0.3"-->
-    <!--        android:maxLength="6"-->
-    <!--        android:textColor="@color/white"-->
-    <!--        android:textColorHint="@color/light_grey"-->
-    <!--        android:textSize="20sp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textView1"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_gravity="center"-->
-    <!--        android:layout_marginTop="100dp"-->
-    <!--        android:fontFamily="@font/oswald"-->
-    <!--        android:gravity="center"-->
-    <!--        android:text="@string/enter_code"-->
-    <!--        android:textColor="@color/white"-->
-    <!--        android:textSize="25sp"-->
-    <!--        app:layout_constraintBottom_toTopOf="parent"-->
-    <!--        app:layout_constraintEnd_toStartOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.0"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintVertical_bias="0.0" />-->
-
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -62,11 +22,12 @@
         app:layout_constraintVertical_bias="0.4" />
 
     <EditText
-        android:id="@+id/user_code"
+        android:id="@+id/user_input_code"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/oswald"
+
         android:gravity="center"
         android:hint="@string/code_hint"
         android:inputType="numberDecimal"
@@ -80,7 +41,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0"
+        android:autofillHints="" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

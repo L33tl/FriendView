@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import ru.l33t.friendview.databinding.ActivityMainBinding
 import ru.l33t.friendview.R
 import ru.l33t.friendview.utils.MyPagerAdapter
 import ru.l33t.friendview.utils.TabLayoutTabSelectedListener
@@ -16,13 +17,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPagerPageChangeListener: ViewPagerPageChangeListener
     private lateinit var adapter: MyPagerAdapter
+
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        viewPager = findViewById(R.id.view_pager)
-        tabLayout = findViewById(R.id.tab_layout)
-
+        initFields()
         initViewPager()
         initTabLayout()
     }
@@ -30,11 +32,18 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (false) {
-            // If user has already been authorized
+//            initViewPager()
+//            initTabLayout()
         } else {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
+    }
+
+    private fun initFields() {
+        viewPager = findViewById(R.id.view_pager)
+        tabLayout = findViewById(R.id.tab_layout)
     }
 
     private fun initViewPager() {

@@ -7,4 +7,5 @@
     <string name="register_image" translatable="false">register_image</string>
     <string name="code_hint" translatable="false">- - - - - -</string>
     <string name="enter_code">Enter Verification Code</string>
+    <string name="register_toast_enter_phone">Enter Phone Number</string>
 </resources>

@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/fragment_enter_phone_number"
     android:layout_height="match_parent"
     android:background="@color/grey"
     tools:context=".fragments.EnterPhoneNumberFragment">
 
 
     <LinearLayout
+        android:id="@+id/register_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -35,7 +37,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/user_phone"
+            android:id="@+id/user_phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autofillHints="phone"
