@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
 import ru.l33t.friendview.databinding.ActivityMainBinding
 import ru.l33t.friendview.R
+import ru.l33t.friendview.utils.AUTH
 import ru.l33t.friendview.utils.MyPagerAdapter
 import ru.l33t.friendview.utils.TabLayoutTabSelectedListener
 import ru.l33t.friendview.utils.ViewPagerPageChangeListener
@@ -31,16 +33,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (false) {
-//            pass
-        } else {
+        if (AUTH.currentUser == null)
             replaceActivity(RegisterActivity())
-        }
     }
 
     private fun initFields() {
         viewPager = findViewById(R.id.view_pager)
         tabLayout = findViewById(R.id.tab_layout)
+
+        AUTH = FirebaseAuth.getInstance()
     }
 
     private fun initViewPager() {
