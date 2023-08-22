@@ -1,6 +1,5 @@
 package ru.l33t.friendview.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
@@ -10,6 +9,7 @@ import ru.l33t.friendview.R
 import ru.l33t.friendview.utils.MyPagerAdapter
 import ru.l33t.friendview.utils.TabLayoutTabSelectedListener
 import ru.l33t.friendview.utils.ViewPagerPageChangeListener
+import ru.l33t.friendview.utils.replaceActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,12 +32,9 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (false) {
-//            initViewPager()
-//            initTabLayout()
+//            pass
         } else {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-            finish()
+            replaceActivity(RegisterActivity())
         }
     }
 

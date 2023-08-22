@@ -2,9 +2,9 @@ package ru.l33t.friendview.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.l33t.friendview.R
 import ru.l33t.friendview.databinding.ActivityRegisterBinding
 import ru.l33t.friendview.fragments.EnterPhoneNumberFragment
+import ru.l33t.friendview.utils.replaceFragment
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -18,8 +18,6 @@ class RegisterActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        supportFragmentManager.beginTransaction()
-            .add(R.id.registerDataContainer, EnterPhoneNumberFragment())
-            .commit()
+        replaceFragment(EnterPhoneNumberFragment(), false)
     }
 }

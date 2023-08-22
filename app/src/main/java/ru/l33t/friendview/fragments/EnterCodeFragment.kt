@@ -1,15 +1,14 @@
 package ru.l33t.friendview.fragments
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import ru.l33t.friendview.R
 import ru.l33t.friendview.databinding.FragmentEnterCodeBinding
+import ru.l33t.friendview.utils.AppTextWatcher
+import ru.l33t.friendview.utils.showToast
 
 class EnterCodeFragment : Fragment(R.layout.fragment_enter_code) {
 
@@ -27,26 +26,15 @@ class EnterCodeFragment : Fragment(R.layout.fragment_enter_code) {
     override fun onStart() {
         super.onStart()
 
-        binding.userInputCode.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                TODO("Not yet implemented")
+        binding.userInputCode.addTextChangedListener(AppTextWatcher {
+            val string = binding.userInputCode.text.toString()
+            if (string.length == 6) {
+                verificateCode()
             }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                TODO("Not yet implemented")
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                val string = binding.userInputCode.text.toString()
-                if (string.length == 6) {
-                    verificateCode()
-                }
-            }
-
         })
     }
 
     private fun verificateCode() {
-        Toast.makeText(activity, "Ok", Toast.LENGTH_SHORT).show()
+        showToast("OK")
     }
 }
