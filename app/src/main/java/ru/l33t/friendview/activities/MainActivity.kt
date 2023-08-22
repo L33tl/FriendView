@@ -1,5 +1,6 @@
 package ru.l33t.friendview.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
@@ -21,6 +22,16 @@ class MainActivity : AppCompatActivity() {
 
         initViewPager()
         initTabLayout()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (false) {
+            // If user has already been authorized
+        } else {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initViewPager() {
