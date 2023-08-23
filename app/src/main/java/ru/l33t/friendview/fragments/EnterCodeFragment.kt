@@ -12,6 +12,11 @@ import ru.l33t.friendview.activities.RegisterActivity
 import ru.l33t.friendview.databinding.FragmentEnterCodeBinding
 import ru.l33t.friendview.utils.AUTH
 import ru.l33t.friendview.utils.AppTextWatcher
+import ru.l33t.friendview.utils.CHILD_ID
+import ru.l33t.friendview.utils.CHILD_PHONE
+import ru.l33t.friendview.utils.CHILD_USERNAME
+import ru.l33t.friendview.utils.NODE_USERS
+import ru.l33t.friendview.utils.REF_DATABASE_ROOT
 import ru.l33t.friendview.utils.replaceActivity
 import ru.l33t.friendview.utils.showToast
 
@@ -34,7 +39,6 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
 
     override fun onStart() {
         super.onStart()
-
         binding.userInputCode.addTextChangedListener(AppTextWatcher {
             val string = binding.userInputCode.text.toString()
             if (string.length == 6) {
@@ -49,8 +53,25 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
 
         AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                showToast("WELCOME")
-                (activity as RegisterActivity).replaceActivity(MainActivity())
+                val uid = AUTH.currentUser?.uid.toString()
+                val dateMap = mutableMapOf<String, Any>()
+                dateMap[CHILD_ID] = uid
+                dateMap[CHILD_PHONE] = phoneNumber
+                dateMap[CHILD_USERNAME] = uid
+
+
+                REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
+                    .addOnCompleteListener { task2 ->
+                        showToast("123WELCOME")
+
+                        if (task2.isSuccessful) {
+                            showToast("WELCOME")
+                            (activity as RegisterActivity).replaceActivity(MainActivity())
+                        } else showToast(task2.exception?.message.toString())
+                    }
+                    .addOnCanceledListener {
+                        showToast("123CANCEL")
+                    }
             } else showToast(task.exception?.message.toString())
         }
     }

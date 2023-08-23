@@ -7,13 +7,13 @@ import android.util.Log
 import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
-import com.google.firebase.auth.FirebaseAuth
 import ru.l33t.friendview.databinding.ActivityMainBinding
 import ru.l33t.friendview.R
 import ru.l33t.friendview.utils.AUTH
 import ru.l33t.friendview.utils.MyPagerAdapter
 import ru.l33t.friendview.utils.TabLayoutTabSelectedListener
 import ru.l33t.friendview.utils.ViewPagerPageChangeListener
+import ru.l33t.friendview.utils.initFirebase
 import ru.l33t.friendview.utils.replaceActivity
 
 class MainActivity : AppCompatActivity() {
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             replaceActivity(RegisterActivity())
         }
 
-        AUTH = FirebaseAuth.getInstance()
+        initFirebase()
     }
 
     private fun initViewPager() {
