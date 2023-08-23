@@ -9,9 +9,15 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import ru.l33t.friendview.databinding.ActivityMainBinding
 import ru.l33t.friendview.R
+import ru.l33t.friendview.models.User
 import ru.l33t.friendview.utils.AUTH
+import ru.l33t.friendview.utils.AppValueEventListener
 import ru.l33t.friendview.utils.MyPagerAdapter
+import ru.l33t.friendview.utils.NODE_USERS
+import ru.l33t.friendview.utils.REF_DATABASE_ROOT
 import ru.l33t.friendview.utils.TabLayoutTabSelectedListener
+import ru.l33t.friendview.utils.UID
+import ru.l33t.friendview.utils.USER
 import ru.l33t.friendview.utils.ViewPagerPageChangeListener
 import ru.l33t.friendview.utils.initFirebase
 import ru.l33t.friendview.utils.replaceActivity
@@ -53,6 +59,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         initFirebase()
+        initUser()
+    }
+
+    private fun initUser() {
+        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+            .addListenerForSingleValueEvent(AppValueEventListener {
+                USER = it.getValue(User::class.java) ?: User()
+            })
     }
 
     private fun initViewPager() {
