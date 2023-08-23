@@ -53,10 +53,10 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
 
             override fun onCodeSent(id: String, token: PhoneAuthProvider.ForceResendingToken) {
                 super.onCodeSent(id, token)
+                Log.w(TAG, "1212onCodeSent: ", )
                 replaceFragment(EnterCodeFragment(phoneNumber, id))
             }
         }
-
         return binding.root
     }
 

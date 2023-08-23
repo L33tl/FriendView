@@ -1,7 +1,10 @@
 package ru.l33t.friendview.activities
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -19,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPagerPageChangeListener: ViewPagerPageChangeListener
     private lateinit var adapter: MyPagerAdapter
+    private lateinit var logOutButton: Button
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        Log.w(TAG, "1212onStart: " + AUTH.currentUser)
         if (AUTH.currentUser == null)
             replaceActivity(RegisterActivity())
     }
@@ -40,6 +45,12 @@ class MainActivity : AppCompatActivity() {
     private fun initFields() {
         viewPager = findViewById(R.id.view_pager)
         tabLayout = findViewById(R.id.tab_layout)
+        logOutButton = findViewById(R.id.log_out_button)
+
+        logOutButton.setOnClickListener {
+            AUTH.signOut()
+            replaceActivity(RegisterActivity())
+        }
 
         AUTH = FirebaseAuth.getInstance()
     }

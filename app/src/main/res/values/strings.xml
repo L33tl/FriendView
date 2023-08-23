@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false"><u>FriendView</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="ru_code" translatable="false">+7</string>
+    <string name="ru_code" translatable="false">+1</string>
     <string name="phone_hint" translatable="false">(---) --- ----</string>
     <string name="register_image" translatable="false">register_image</string>
     <string name="code_hint" translatable="false">- - - - - -</string>

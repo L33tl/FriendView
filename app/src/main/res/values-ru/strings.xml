@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name"><u>FriendView</u></string>
     <string name="enter_code">Введите Код</string>
     <string name="register_toast_enter_phone">Введите номер телефона</string>
 </resources>
