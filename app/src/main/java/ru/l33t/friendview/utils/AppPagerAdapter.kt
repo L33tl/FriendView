@@ -8,7 +8,7 @@ import ru.l33t.friendview.fragments.GalleryFragment
 import ru.l33t.friendview.fragments.PhotoFragment
 import ru.l33t.friendview.fragments.ProfileFragment
 
-class MyPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+class AppPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 
     private val fragments =
         arrayOf(FriendsFragment(), PhotoFragment(), GalleryFragment(), ProfileFragment())

@@ -2,4 +2,8 @@
 <resources>
     <string name="enter_code">Введите Код</string>
     <string name="register_toast_enter_phone">Введите номер телефона</string>
+    <string name="friends">Друзья</string>
+    <string name="photo">Фото</string>
+    <string name="gallery">Галерея</string>
+    <string name="profile">Профиль</string>
 </resources>

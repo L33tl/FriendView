@@ -9,17 +9,12 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import ru.l33t.friendview.databinding.ActivityMainBinding
 import ru.l33t.friendview.R
-import ru.l33t.friendview.models.User
 import ru.l33t.friendview.utils.AUTH
-import ru.l33t.friendview.utils.AppValueEventListener
-import ru.l33t.friendview.utils.MyPagerAdapter
-import ru.l33t.friendview.utils.NODE_USERS
-import ru.l33t.friendview.utils.REF_DATABASE_ROOT
+import ru.l33t.friendview.utils.AppPagerAdapter
 import ru.l33t.friendview.utils.TabLayoutTabSelectedListener
-import ru.l33t.friendview.utils.UID
-import ru.l33t.friendview.utils.USER
 import ru.l33t.friendview.utils.ViewPagerPageChangeListener
 import ru.l33t.friendview.utils.initFirebase
+import ru.l33t.friendview.utils.initUser
 import ru.l33t.friendview.utils.replaceActivity
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPagerPageChangeListener: ViewPagerPageChangeListener
-    private lateinit var adapter: MyPagerAdapter
+    private lateinit var adapter: AppPagerAdapter
     private lateinit var logOutButton: Button
 
     private lateinit var binding: ActivityMainBinding
@@ -36,43 +31,45 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initFields()
-        initViewPager()
-        initTabLayout()
+        initFirebase()
+//        AUTH.signOut()
     }
 
     override fun onStart() {
         super.onStart()
-        Log.w(TAG, "1212onStart: " + AUTH.currentUser)
-        if (AUTH.currentUser == null)
+        initFields()
+
+        if (AUTH.currentUser == null) {
+            Log.w(TAG, "12121234startREG")
             replaceActivity(RegisterActivity())
+        } else {
+            Log.w(TAG, "12121234startINIT")
+        }
     }
 
     private fun initFields() {
+        initFirebase()
+        initUser()
+
         viewPager = findViewById(R.id.view_pager)
         tabLayout = findViewById(R.id.tab_layout)
         logOutButton = findViewById(R.id.log_out_button)
-
         logOutButton.setOnClickListener {
             AUTH.signOut()
             replaceActivity(RegisterActivity())
         }
 
-        initFirebase()
-        initUser()
-    }
+        initViewPager()
+        initTabLayout()
 
-    private fun initUser() {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
-            .addListenerForSingleValueEvent(AppValueEventListener {
-                USER = it.getValue(User::class.java) ?: User()
-            })
+        Log.w(TAG, "121212initFields")
+
     }
 
     private fun initViewPager() {
         viewPagerPageChangeListener = ViewPagerPageChangeListener(tabLayout)
         viewPager.registerOnPageChangeCallback(viewPagerPageChangeListener)
-        adapter = MyPagerAdapter(this)
+        adapter = AppPagerAdapter(this)
         viewPager.adapter = adapter
     }
 

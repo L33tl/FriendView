@@ -1,6 +1,8 @@
 package ru.l33t.friendview.fragments
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +14,9 @@ import ru.l33t.friendview.activities.RegisterActivity
 import ru.l33t.friendview.databinding.FragmentEnterCodeBinding
 import ru.l33t.friendview.utils.AUTH
 import ru.l33t.friendview.utils.AppTextWatcher
-import ru.l33t.friendview.utils.CHILD_ID
+import ru.l33t.friendview.utils.CHILD_FRIENDS_PHONES
 import ru.l33t.friendview.utils.CHILD_PHONE
+import ru.l33t.friendview.utils.CHILD_PHOTOS
 import ru.l33t.friendview.utils.CHILD_USERNAME
 import ru.l33t.friendview.utils.NODE_USERS
 import ru.l33t.friendview.utils.REF_DATABASE_ROOT
@@ -53,17 +56,17 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
 
         AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val uid = AUTH.currentUser?.uid.toString()
                 val dateMap = mutableMapOf<String, Any>()
-                dateMap[CHILD_ID] = uid
                 dateMap[CHILD_PHONE] = phoneNumber
-                dateMap[CHILD_USERNAME] = uid
+                dateMap[CHILD_USERNAME] = "User" + phoneNumber.takeLast(4)
+                dateMap[CHILD_FRIENDS_PHONES] = ""
+                dateMap[CHILD_PHOTOS] = ""
 
+                Log.w(TAG, "121212enterCode: ${dateMap}")
 
-                REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
+                REF_DATABASE_ROOT.child(NODE_USERS).child(phoneNumber).updateChildren(dateMap)
                     .addOnCompleteListener { task2 ->
                         showToast("123WELCOME")
-
                         if (task2.isSuccessful) {
                             showToast("WELCOME")
                             (activity as RegisterActivity).replaceActivity(MainActivity())

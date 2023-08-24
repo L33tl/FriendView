@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey"
+    android:paddingStart="10dp"
+    android:paddingTop="5dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="5dp">
+
+    <ImageView
+        android:id="@+id/friend_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_person_example"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/friend_icon" />
+
+    <TextView
+        android:id="@+id/friend_name"
+        style="@style/friend_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/friend_name_example"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/friend_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/friend_button_bother"
+        android:layout_width="wrap_content"
+        app:fabCustomSize="45dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/green"
+        android:src="@drawable/common_full_open_on_phone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toEndOf="@id/friend_name"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/bother_the_friend" />
+
+    <ImageView
+        android:id="@+id/image_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_more"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/friend_button_bother"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/more" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="heading_text">
+        <item name="android:fontFamily">@font/oswald</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">@color/white_text</item>
+    </style>
+
+    <style name="friend_item_text">
+        <item name="android:fontFamily">@font/oswald</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/white_text</item>
+    </style>
+</resources>

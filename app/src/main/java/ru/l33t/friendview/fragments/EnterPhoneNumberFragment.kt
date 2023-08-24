@@ -1,8 +1,6 @@
 package ru.l33t.friendview.fragments
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,20 +38,18 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        showToast("1212WELCOME")
+                        showToast("121212WELCOME")
                         (activity as RegisterActivity).replaceActivity(MainActivity())
-                    } else showToast("1212" + task.exception?.message.toString())
+                    } else showToast("121212" + task.exception?.message.toString())
                 }
             }
 
             override fun onVerificationFailed(exception: FirebaseException) {
-                Log.w(TAG, "1212onVerificationFailed: ${exception.message}", )
                 showToast(exception.message.toString())
             }
 
             override fun onCodeSent(id: String, token: PhoneAuthProvider.ForceResendingToken) {
                 super.onCodeSent(id, token)
-                Log.w(TAG, "1212onCodeSent: ", )
                 replaceFragment(EnterCodeFragment(phoneNumber, id))
             }
         }
@@ -73,14 +69,11 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
     }
 
     private fun authUser() {
-
         val options = PhoneAuthOptions.newBuilder()
             .setPhoneNumber(phoneNumber)
             .setTimeout(60, TimeUnit.SECONDS)
             .setActivity(activity as RegisterActivity)
             .setCallbacks(callback).build()
-
-        Log.w(TAG, "1212authUser: $options", )
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
 }

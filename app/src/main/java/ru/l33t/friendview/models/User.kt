@@ -1,8 +1,16 @@
 package ru.l33t.friendview.models
 
 data class User(
-    val id: String = "",
     val phone: String = "",
     var username: String = "",
-    val friends: Set<String> = setOf()
-)
+    val friendsPhonesList: String = "",
+    val photosUrls: String = "",
+    val friendsList: MutableList<User> = mutableListOf()
+) {
+    override fun toString(): String {
+        return "phone: $phone\n" +
+                "username: $username\n" +
+                "friendsPhones: ${friendsPhonesList.split("##")}\n" +
+                "friendsList: ${if (friendsList.isNotEmpty()) friendsList[0].username else "[]"}"
+    }
+}
