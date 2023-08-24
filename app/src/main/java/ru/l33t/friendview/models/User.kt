@@ -5,8 +5,8 @@ import ru.l33t.friendview.utils.PHONES_DELIMITER
 data class User(
     val phone: String = "",
     var username: String = "",
-    val friendsPhonesList: String = "",
-    val photosUrls: String = "",
+    var friendsPhonesList: String = "",
+    var photosUrls: String = "",
     val friendsList: MutableList<User> = mutableListOf()
 ) {
     override fun toString(): String {

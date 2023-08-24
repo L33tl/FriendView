@@ -6,4 +6,6 @@
     <string name="photo">Фото</string>
     <string name="gallery">Галерея</string>
     <string name="profile">Профиль</string>
+    <string name="invitation_link">Пригласить друга</string>
+    <string name="settings">Настройки</string>
 </resources>

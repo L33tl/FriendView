@@ -32,8 +32,11 @@ fun initUser() {
         .addOnSuccessListener { task ->
             USER = task.getValue(User::class.java) ?: User()
 
+//            USER.friendsPhonesList += "#"
+//            USER.friendsPhonesList = USER.friendsPhonesList.repeat(20).dropLast(1)
+
             if (USER.friendsPhonesList.isNotEmpty()) {
-                for (friendPhone in USER.friendsPhonesList.split("##")) {
+                for (friendPhone in USER.friendsPhonesList.split(PHONES_DELIMITER)) {
                     REF_DATABASE_ROOT.child(NODE_USERS).child(friendPhone).get()
                         .addOnSuccessListener { task2 ->
                             val user = task2.getValue(User::class.java) ?: User()
@@ -50,6 +53,12 @@ fun createNewUser(phoneNumber: String): MutableMap<String, Any> {
     dateMap[CHILD_USERNAME] = "User" + phoneNumber.takeLast(4)
     dateMap[CHILD_FRIENDS_PHONES] = ""
     dateMap[CHILD_PHOTOS] = ""
+
+//    TODO("TESTING")
+    if (phoneNumber.last() == '4')
+        dateMap[CHILD_FRIENDS_PHONES] = "+16505553435"
+    else
+        dateMap[CHILD_FRIENDS_PHONES] = "+16505553434"
 
     return dateMap
 }

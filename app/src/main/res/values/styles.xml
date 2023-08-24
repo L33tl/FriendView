@@ -12,4 +12,17 @@
         <item name="android:textSize">25sp</item>
         <item name="android:textColor">@color/white_text</item>
     </style>
+
+    <style name="settings_button">
+        <item name="android:layout_width">5dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:backgroundTint">@color/yellow</item>
+        <item name="background">@drawable/settings_button</item>
+        <item name="android:layout_weight">1</item>
+
+        <item name="fontFamily">@font/oswald</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

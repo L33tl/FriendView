@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         initFirebase()
 //        AUTH.signOut()
+
+        initViews()
     }
 
     override fun onStart() {
@@ -48,17 +50,19 @@ class MainActivity : AppCompatActivity() {
     private fun initFields() {
         initFirebase()
         initUser()
+    }
 
+    fun initViews() {
         viewPager = findViewById(R.id.view_pager)
         tabLayout = findViewById(R.id.tab_layout)
+        initViewPager()
+        initTabLayout()
+
         logOutButton = findViewById(R.id.log_out_button)
         logOutButton.setOnClickListener {
             AUTH.signOut()
             replaceActivity(RegisterActivity())
         }
-
-        initViewPager()
-        initTabLayout()
     }
 
     private fun initViewPager() {

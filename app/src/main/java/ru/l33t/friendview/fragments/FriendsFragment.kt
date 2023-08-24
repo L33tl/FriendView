@@ -26,12 +26,13 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
     ): View {
         super.onCreate(savedInstanceState)
         binding = FragmentFriendsBinding.inflate(layoutInflater, container, false)
-
-        friendsRecyclerView = binding.friendsList
-        val linearLayoutManager = LinearLayoutManager(this.context)
-        friendsRecyclerView.layoutManager = linearLayoutManager
-
+        initFields()
         return binding.root
+    }
+
+    private fun initFields() {
+        friendsRecyclerView = binding.friendsList
+        friendsRecyclerView.layoutManager = LinearLayoutManager(this.context)
     }
 
     override fun onResume() {

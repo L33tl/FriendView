@@ -16,4 +16,7 @@
     <string name="friend_icon" translatable="false">Friend icon</string>
     <string name="bother_the_friend" translatable="false">Bother the friend</string>
     <string name="more" translatable="false">more</string>
+    <string name="profile_photo" translatable="false">Profile Photo</string>
+    <string name="invitation_link">Invitation Link</string>
+    <string name="settings">Settings</string>
 </resources>

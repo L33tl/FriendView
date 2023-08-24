@@ -8,7 +8,7 @@
     <color name="lighter_grey">@color/material_dynamic_neutral20</color>
     <color name="green">#8AC087</color>
     <color name="white_text">#FBFAFE</color>
-    <color name="yelllow">#FDD37F</color>
+    <color name="yellow">#FDD37F</color>
     <color name="pink">#FEA9C6</color>
     <color name="purple">#7968D7</color>
 </resources>
