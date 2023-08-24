@@ -14,6 +14,7 @@ import ru.l33t.friendview.activities.MainActivity
 import ru.l33t.friendview.activities.RegisterActivity
 import ru.l33t.friendview.databinding.FragmentEnterPhoneNumberBinding
 import ru.l33t.friendview.utils.AUTH
+import ru.l33t.friendview.utils.makeLog
 import ru.l33t.friendview.utils.replaceActivity
 import ru.l33t.friendview.utils.replaceFragment
 import ru.l33t.friendview.utils.showToast
@@ -32,20 +33,18 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
         super.onCreate(savedInstanceState)
         binding = FragmentEnterPhoneNumberBinding.inflate(layoutInflater, container, false)
 
-
         binding.buttonReg.setOnClickListener { sendCode() }
         callback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        showToast("121212WELCOME")
                         (activity as RegisterActivity).replaceActivity(MainActivity())
-                    } else showToast("121212" + task.exception?.message.toString())
+                    } else makeLog(task.exception?.message.toString(), 'e')
                 }
             }
 
             override fun onVerificationFailed(exception: FirebaseException) {
-                showToast(exception.message.toString())
+                makeLog(exception.message.toString(), 'e')
             }
 
             override fun onCodeSent(id: String, token: PhoneAuthProvider.ForceResendingToken) {

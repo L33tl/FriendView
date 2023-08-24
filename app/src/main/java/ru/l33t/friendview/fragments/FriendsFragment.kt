@@ -1,8 +1,6 @@
 package ru.l33t.friendview.fragments
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,10 +36,7 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
 
     override fun onResume() {
         super.onResume()
-        Log.w(TAG, "121212FRIENDSonStart: $USER")
-
         if (USER.friendsList.isNotEmpty()) {
-            Log.w(TAG, "121212FRIENDSonResume: ${USER.friendsList}")
             friendsViewAdapter = AppRecyclerViewAdapter(USER.friendsList)
             friendsRecyclerView.adapter = friendsViewAdapter
         } else {

@@ -1,9 +1,7 @@
 package ru.l33t.friendview.activities
 
-import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -15,6 +13,7 @@ import ru.l33t.friendview.utils.TabLayoutTabSelectedListener
 import ru.l33t.friendview.utils.ViewPagerPageChangeListener
 import ru.l33t.friendview.utils.initFirebase
 import ru.l33t.friendview.utils.initUser
+import ru.l33t.friendview.utils.makeLog
 import ru.l33t.friendview.utils.replaceActivity
 
 class MainActivity : AppCompatActivity() {
@@ -40,10 +39,9 @@ class MainActivity : AppCompatActivity() {
         initFields()
 
         if (AUTH.currentUser == null) {
-            Log.w(TAG, "12121234startREG")
             replaceActivity(RegisterActivity())
         } else {
-            Log.w(TAG, "12121234startINIT")
+            makeLog("Main Started with acc ${AUTH.currentUser?.phoneNumber}")
         }
     }
 
@@ -61,9 +59,6 @@ class MainActivity : AppCompatActivity() {
 
         initViewPager()
         initTabLayout()
-
-        Log.w(TAG, "121212initFields")
-
     }
 
     private fun initViewPager() {
