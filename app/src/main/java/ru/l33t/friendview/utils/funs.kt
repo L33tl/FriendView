@@ -12,15 +12,14 @@ fun Fragment.showToast(message: String) {
     Toast.makeText(this.context, message, Toast.LENGTH_SHORT).show()
 }
 
-@Suppress("unused")
 fun AppCompatActivity.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
-fun AppCompatActivity.replaceActivity(activity: AppCompatActivity) {
+fun AppCompatActivity.replaceActivity(activity: AppCompatActivity, saveCurrent: Boolean = false) {
     val intent = Intent(this, activity::class.java)
     startActivity(intent)
-    this.finish()
+    if (!saveCurrent) this.finish()
 }
 
 fun AppCompatActivity.replaceFragment(fragment: Fragment, addToBackStack: Boolean = true) {
@@ -38,6 +37,11 @@ fun Fragment.replaceFragment(fragment: Fragment) {
         .addToBackStack(null)
         .replace(R.id.dataContainer, fragment)
         .commit()
+}
+
+fun Fragment.replaceActivity(activity: AppCompatActivity) {
+    val intent = Intent(this.activity, activity::class.java)
+    startActivity(intent)
 }
 
 fun makeLog(message: String, mode: Char = 'd') {

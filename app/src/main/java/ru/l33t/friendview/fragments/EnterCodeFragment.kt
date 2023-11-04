@@ -51,12 +51,17 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
 
         AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                makeLog(code + "54")
                 val dateMap = createNewUser(phoneNumber)
+                makeLog(dateMap.toString())
                 REF_DATABASE_ROOT.child(NODE_USERS).child(phoneNumber).updateChildren(dateMap)
                     .addOnCompleteListener { task2 ->
                         if (task2.isSuccessful) {
+                            makeLog(code + "59")
                             (activity as RegisterActivity).replaceActivity(MainActivity())
-                        } else makeLog(task2.exception?.message.toString(), 'e')
+                        } else {
+                            makeLog(task2.exception?.message.toString(), 'e')
+                        }
                     }
                     .addOnCanceledListener {}
             } else makeLog(task.exception?.message.toString(), 'e')

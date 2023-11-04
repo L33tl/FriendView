@@ -3,6 +3,7 @@ package ru.l33t.friendview.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import ru.l33t.friendview.databinding.ActivityMainBinding
@@ -15,6 +16,7 @@ import ru.l33t.friendview.utils.initFirebase
 import ru.l33t.friendview.utils.initUser
 import ru.l33t.friendview.utils.makeLog
 import ru.l33t.friendview.utils.replaceActivity
+import ru.l33t.friendview.utils.showToast
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,15 +27,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var logOutButton: Button
 
     private lateinit var binding: ActivityMainBinding
+
+    private var backPressedTime: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initFirebase()
-//        AUTH.signOut()
 
         initViews()
+
+        onBackPressedDispatcher.addCallback(onBackPressedCallback)
     }
 
     override fun onStart() {
@@ -57,12 +62,6 @@ class MainActivity : AppCompatActivity() {
         tabLayout = findViewById(R.id.tab_layout)
         initViewPager()
         initTabLayout()
-
-        logOutButton = findViewById(R.id.log_out_button)
-        logOutButton.setOnClickListener {
-            AUTH.signOut()
-            replaceActivity(RegisterActivity())
-        }
     }
 
     private fun initViewPager() {
@@ -79,5 +78,18 @@ class MainActivity : AppCompatActivity() {
         tabLayout.addTab(tabLayout.newTab().setText("Profile"))
         viewPager.setCurrentItem(1, false)
         tabLayout.addOnTabSelectedListener(TabLayoutTabSelectedListener(viewPager))
+    }
+
+    private val onBackPressedCallback = object :
+        OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            val currentTime = System.currentTimeMillis()
+            if (currentTime - backPressedTime > 2000) {
+                backPressedTime = currentTime
+                showToast("Для выхода, нажмите ещё раз")
+            } else {
+                finish()
+            }
+        }
     }
 }
